@@ -15,7 +15,10 @@
             </ul>
         </div>
         <div class="col-12 col-md-8">
-            <h4>items</h4>
+            <!-- <h4>items</h4> -->
+            {% for product in products %}
+                {% include 'partials/product_card.html' %}
+            {% endfor %}
         </div>
     </div>
 </div>
