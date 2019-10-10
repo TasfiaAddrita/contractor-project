@@ -1,0 +1,9 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+{% for item in shopping_list %}
+    {% include 'partials/cart_item.html' %}
+{% endfor %}
+
+{% endblock %}

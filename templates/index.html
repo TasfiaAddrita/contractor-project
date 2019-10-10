@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container">
+<div class="index">
     <div class="row">
         <div class="col-6 col-md-4">
             <h4>categories</h4>
@@ -15,7 +15,6 @@
             </ul>
         </div>
         <div class="col-12 col-md-8">
-            <!-- <h4>items</h4> -->
             {% for product in products %}
                 {% include 'partials/product_card.html' %}
             {% endfor %}
