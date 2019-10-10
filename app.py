@@ -4,13 +4,18 @@ from bson.objectid import ObjectId
 import os
 from datetime import datetime
 
+# heroku deployment
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
+client = MongoClient(host=f'{host}?retryWrites=false')
+db = client.get_default_database()
+
 # local deployment
-client = MongoClient()
-db = client.Store
+# client = MongoClient()
+# db = client.Store
+
 users = db.users
 products = db.products
 shopping_cart = db.shopping_cart
-checkout = db.checkout
 
 # dummy products
 db_products = [
