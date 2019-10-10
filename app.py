@@ -10,6 +10,7 @@ db = client.Store
 users = db.users
 products = db.products
 shopping_cart = db.shopping_cart
+checkout = db.checkout
 
 # dummy products
 db_products = [
@@ -43,9 +44,9 @@ db_products = [
     }
 ]
 
-db.products.delete_many({})
-db.shopping_cart.delete_many({})
-db.products.insert_many(db_products)
+# db.products.delete_many({})
+# db.shopping_cart.delete_many({})
+# db.products.insert_many(db_products)
 
 app = Flask(__name__)
 
@@ -53,19 +54,16 @@ app = Flask(__name__)
 def index():
     return render_template('index.html', products=products.find({}))
 
-
 @app.route('/product/<product_id>', methods=['GET'])
 def product_page(product_id):
     product = products.find_one({'_id': ObjectId(product_id)})
     return render_template('product.html', product=product)
-
 
 @app.route('/product/<product_id>', methods=['POST'])
 def add_product(product_id):
     quantity = request.form.get('quantity')
     product_id =  products.find_one({'_id': ObjectId(product_id)})
     subtotal = int(quantity) * int(product_id['price'])
-    print(product_id['price'])
     product_item = {
         'product_id': product_id,
         'quantity': quantity,
@@ -76,8 +74,11 @@ def add_product(product_id):
 
 @app.route('/shopping-cart', methods=["GET"])
 def show_shopping_cart():
-    return render_template('shopping_cart.html', shopping_list=shopping_cart.find({}))
-
+    total = 0
+    for item in shopping_cart.find({}):
+        for product in products.find({}):
+            total += product['price']
+    return render_template('shopping_cart.html', shopping_cart=shopping_cart.find({}), total=total)
 
 @app.route('/shopping-cart/<product_id>/<change_quantity>', methods=["POST"])
 def update_quantity(product_id, change_quantity):

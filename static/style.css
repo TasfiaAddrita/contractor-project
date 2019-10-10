@@ -2,6 +2,10 @@
     margin-top: 30px;
 }
 
+.col {
+    padding: 0px;
+}
+
 .card {
     width: 16rem;
     margin: 10px;

@@ -1,9 +1,28 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 
-{% for item in shopping_list %}
-    {% include 'partials/cart_item.html' %}
-{% endfor %}
+<div class="row">
+    <div class="col-9">
+        {% for item in shopping_cart %}
+            {% include 'partials/cart_item.html' %}
+        {% endfor %}
+    </div>
+
+    <div class="col-3 d-flex h-100">
+        <div class="card" style="margin-left: 0px;">
+            <div class="card-item">
+                <div class="card-body">
+                    <h1>Total</h1>
+                    <h3>${{ '%0.2f'| format(total|float) }}</h3>
+                    <br>
+                    <button class="btn btn-warning">Proceed to checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 {% endblock %}

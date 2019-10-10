@@ -1,12 +1,11 @@
 <div class="card cart-item">
     <div class="row no-gutters">
-        <!-- <div class="col-md-4"> -->
         <div class="col">
             <img src="{{ item.product_id.picture }}" class="card-img">
         </div>
         <div class="col-md-6 d-flex align-items-start">
             <div class="card-body">
-                <h5 class="card-title">{{ item.product_id.name }}</h5>
+                <h4 class="card-title">{{ item.product_id.name }}</h4>
                 <form id="change-quantity" action="" method="POST">
                     <p class="card-text d-inline">Quantity: </p>
                     <select name="quantity">
@@ -16,10 +15,9 @@
                         <option {{ 'selected' if item.quantity == "4" else '' }} value="4">4</option>
                         <option {{ 'selected' if item.quantity == "5" else '' }} value="5">5</option>
                     </select>
-                    <!-- <p id="quant-success" class="small">Quantity updated!</p> -->
                 </form>
                 <br>
-                <p class="card-text">${{ '%0.2f'| format(item.product_id.price|float) }}</p>
+                <h5 class="card-text">${{ '%0.2f'| format(item.product_id.price|float) }}</h5>
             </div>
         </div>
         <div class="col d-flex align-items-center">
