@@ -4,23 +4,17 @@
         <div class="col">
             <img src="{{ item.product_id.picture }}" class="card-img">
         </div>
-        <div class="col d-flex align-items-center">
+        <div class="col-md-6 d-flex align-items-start">
             <div class="card-body">
                 <h5 class="card-title">{{ item.product_id.name }}</h5>
-
                 <form id="change-quantity" action="" method="POST">
                     <p class="card-text d-inline">Quantity: </p>
                     <select name="quantity">
-                        <option {{ 'selected' if item.quantity == "1" else '' }}
-                            value="/shopping-cart/{{ item.product_id._id }}/1">1</option>
-                        <option {{ 'selected' if item.quantity == "2" else '' }}
-                            value="/shopping-cart/{{ item.product_id._id }}/2">2</option>
-                        <option {{ 'selected' if item.quantity == "3" else '' }}
-                            value="/shopping-cart/{{ item.product_id._id }}/3">3</option>
-                        <option {{ 'selected' if item.quantity == "4" else '' }}
-                            value="/shopping-cart/{{ item.product_id._id }}/4">4</option>
-                        <option {{ 'selected' if item.quantity == "5" else '' }}
-                            value="/shopping-cart/{{ item.product_id._id }}/5">5</option>
+                        <option {{ 'selected' if item.quantity == "1" else '' }} value="1">1</option>
+                        <option {{ 'selected' if item.quantity == "2" else '' }} value="2">2</option>
+                        <option {{ 'selected' if item.quantity == "3" else '' }} value="3">3</option>
+                        <option {{ 'selected' if item.quantity == "4" else '' }} value="4">4</option>
+                        <option {{ 'selected' if item.quantity == "5" else '' }} value="5">5</option>
                     </select>
                     <!-- <p id="quant-success" class="small">Quantity updated!</p> -->
                 </form>
@@ -28,36 +22,22 @@
                 <p class="card-text">${{ '%0.2f'| format(item.product_id.price|float) }}</p>
             </div>
         </div>
+        <div class="col d-flex align-items-center">
+            <div class="card-body" style="padding: 0px;">
+               <h5>Subtotal: ${{ '%0.2f'| format(item.subtotal|float) }}</h5>
+               <form action="/shopping-cart/{{ item.product_id._id }}/delete", method="POST">
+                    <button style="margin-top: 15px;" class="btn btn-outline-danger" type="submit">Delete</button>
+               </form>
+            </div>
+        </div>
     </div>
 </div>
+
 <script type="text/javascript">
-    document.getElementById('change-quantity').quantity.onchange = function () {
-        var newaction = this.value;
+    document.getElementById('change-quantity').quantity.onchange = function() {
+        img_src = '/shopping-cart/{{ item.product_id._id }}/'
+        var newaction = img_src + this.value;
         document.getElementById('change-quantity').action = newaction;
-        // this.form.submit(function(e) {
-        //     e.preventDefault();
-        //     this.submit()
-        //     updateQuantSuccessMessage()
-        // })
         this.form.submit()
-        // updateQuantSuccessMessage()
-        // console.log("I work")
     };
-
-    // function updateQuantSuccessMessage() {
-    document.getElementById.onload = function() {
-        ('quant-success').style.cssText = "visibility: visible; opacity: 1;"
-        console.log("I work")
-    }
-    // }
-
-    // function toggleQuantSuccessMessage() {
-    //     var x = document.getElementById("quant-success");
-    //     if (x.style.display === "none") {
-    //         x.style.display = "block";
-    //     } else {
-    //         x.style.display = "none";
-    //     }
-    // }
-    
 </script>

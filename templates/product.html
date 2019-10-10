@@ -1,28 +1,37 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 
-<div class="img-border float-left">
-    <img class="img-size" src='{{ product.picture }}'>
-</div>
-<div class="product-content d-inline-block">
-    <h1>{{ product.name }}</h1>
-    <h6>{{ product.description }}</h6>
-    <h4>${{ '%0.2f'| format(product.price|float) }}</h4>
-</div>
-<form method="POST" action="/product/{{ product._id }}">
-    <div class="form-group">
-        <p class="card-text d-inline">Quantity</p>
-        <select name="quantity">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
+<div class="row">
 
-        <button class="d-block btn btn-outline-info" type="submit">Add to cart</button>
+    <div class="col-md-5">
+        <div class="img-border float-left">
+            <img class="img-size" src='{{ product.picture }}'>
+        </div>
     </div>
-</form>
+
+    <div class="col-md-7">
+        <div class="product-content d-inline-block">
+            <h1>{{ product.name }}</h1>
+            <h6>{{ product.description }}</h6>
+            <h4>${{ '%0.2f'| format(product.price|float) }}</h4>
+        </div>
+        <form method="POST" action="/product/{{ product._id }}">
+            <div class="form-group">
+                <p class="card-text d-inline">Quantity</p>
+                <select name="quantity">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <button class="d-block btn btn-outline-info" type="submit">Add to cart</button>
+            </div>
+        </form>
+    </div>
+
+</div>
 
 {% endblock %}

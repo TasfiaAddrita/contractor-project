@@ -3,12 +3,12 @@
 }
 
 .card {
-    width: 20rem;
+    width: 16rem;
     margin: 10px;
 }
 
 .card-img {
-    width: 50%;
+    width: 100%;
 }
 
 .img-size {
@@ -31,7 +31,12 @@
 .product-content h4 {
     color: red;
     /* padding-top: 50px; */
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.form-group button {
+    margin-top: 20px;
 }
 
 .cart-item {
@@ -44,4 +49,12 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
 }
