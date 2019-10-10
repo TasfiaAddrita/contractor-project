@@ -76,12 +76,14 @@ def add_product(product_id):
 def show_shopping_cart():
     total = 0
     for item in shopping_cart.find({}):
-        for product in products.find({}):
-            total += product['price']
+        total += item['product_id']['price'] * int(item['quantity'])
     return render_template('shopping_cart.html', shopping_cart=shopping_cart.find({}), total=total)
 
 @app.route('/shopping-cart/<product_id>/<change_quantity>', methods=["POST"])
+# @app.route('/shopping-cart/<product_id>/', methods=["POST"])
 def update_quantity(product_id, change_quantity):
+    # change_quantity = request.form.get('quantity')
+    # print(change_quantity)
     product_id_update = products.find_one({'_id': ObjectId(product_id)})
     shopping_cart.update_one(
         {'product_id': product_id_update},
@@ -102,3 +104,6 @@ def delete_cart_item(product_id):
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
+    db.products.delete_many({})
+    db.shopping_cart.delete_many({})
+    db.products.insert_many(db_products)

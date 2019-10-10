@@ -4,7 +4,7 @@
 
 <div class="index">
     <div class="row">
-        <div class="col-6 col-md-2">
+        <div class="col-6 col-md-2 h-100">
             <h4>categories</h4>
             <ul>
                 <li>hello</li>
@@ -14,7 +14,7 @@
                 <li>hello 5</li>
             </ul>
         </div>
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-md-10 h-100">
             {% for product in products %}
                 {% include 'partials/product_card.html' %}
             {% endfor %}

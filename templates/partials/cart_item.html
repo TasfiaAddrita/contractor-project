@@ -6,7 +6,7 @@
         <div class="col-md-6 d-flex align-items-start">
             <div class="card-body">
                 <h4 class="card-title">{{ item.product_id.name }}</h4>
-                <form id="change-quantity" action="" method="POST">
+                <form id="change-quantity" action="/shopping-cart/{{ item.product_id._id }}" method="POST">
                     <p class="card-text d-inline">Quantity: </p>
                     <select name="quantity">
                         <option {{ 'selected' if item.quantity == "1" else '' }} value="1">1</option>
@@ -38,4 +38,7 @@
         document.getElementById('change-quantity').action = newaction;
         this.form.submit()
     };
+    // document.getElementById('change-quantity').onsubmit = function() {
+    //     console.log("I work")
+    // }
 </script>
