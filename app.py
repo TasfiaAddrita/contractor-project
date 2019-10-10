@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 
 # heroku deployment
-host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Playlister')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Store')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 
@@ -51,7 +51,9 @@ db_products = [
 
 # db.products.delete_many({})
 # db.shopping_cart.delete_many({})
-# db.products.insert_many(db_products)
+db.products.drop()
+db.shopping_cart.drop()
+db.products.insert_many(db_products)
 
 app = Flask(__name__)
 
